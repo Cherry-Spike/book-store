@@ -1,9 +1,11 @@
+import random
+
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import Book
+from .models import Book, User
 from .serializers import BookSerializer
-
 
 class BookViewSet(viewsets.ViewSet):
     def list(self, request): #/api/books
@@ -33,3 +35,11 @@ class BookViewSet(viewsets.ViewSet):
         book = Book.objects.get(id=pk)
         book.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class UserAPIView(APIView):
+    def get(self, _):
+        users = User.objects.all()
+        user = random.choice(users)
+        return Response({
+            'id': user.id
+        })

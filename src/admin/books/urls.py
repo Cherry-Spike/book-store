@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import BookViewSet
+from .views import BookViewSet, UserAPIView
 
 urlpatterns = [
     path('books/', BookViewSet.as_view({
@@ -12,4 +12,5 @@ urlpatterns = [
         'put': 'update',
         'delete': 'destroy'
     })),
+    path('user', UserAPIView.as_view())
 ]

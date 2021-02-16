@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: 'python consumer.py'
+    command: 'python books/consumer.py'
     depends_on:
       - db
 

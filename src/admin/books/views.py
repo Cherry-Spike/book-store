@@ -5,12 +5,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Book, User
+from .producer import publish
 from .serializers import BookSerializer
 
 class BookViewSet(viewsets.ViewSet):
     def list(self, request): #/api/books
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
+        publish()
         return Response(serializer.data)
     
     def create(self, request): #/api/books
